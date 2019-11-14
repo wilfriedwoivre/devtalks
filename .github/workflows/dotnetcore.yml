@@ -25,18 +25,18 @@ jobs:
         name: webapp
         path: bin/Release/netcoreapp3.0/publish
   
-  # deploy:
+  deploy:
 
-  #   needs: build
-  #   runs-on: windows-latest
-  #   steps:
-  #     - name: Download Artifacts
-  #       uses: actions/download-artifact@master
-  #       with:
-  #         name: webapp
-  #     - name: Deploy to Azure App Service
-  #       uses: azure/appservice-actions/webapp@master
-  #       with:
-  #         app-name: actionsSampleApp
-  #         package: webapp
-  #         publish-profile: ${{ secrets.dirtyWebappPublishProfile }}
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@master
+        with:
+          name: webapp
+      - name: Deploy to Azure App Service
+        uses: azure/appservice-actions/webapp@master
+        with:
+          app-name: actionsSampleApp
+          package: webapp
+          publish-profile: ${{ secrets.dirtyWebappPublishProfile }}
